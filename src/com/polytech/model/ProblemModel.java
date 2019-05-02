@@ -1,19 +1,17 @@
-package com.polytech;
-
-import com.polytech.model.Configuration;
+package com.polytech.model;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class ProblemSolver {
+public class ProblemModel {
     int n;
+
     int[][] weight;
     int[][] dist;
 
 
-    public ProblemSolver(String filePath) throws FileNotFoundException {
+    public ProblemModel(String filePath) throws FileNotFoundException {
         Scanner scannerDoc = new Scanner(new FileReader(filePath));
         n=scannerDoc.nextInt();
 
@@ -32,12 +30,12 @@ public class ProblemSolver {
         }
     }
 
-    int getFitness(Configuration conf){
-        assert (this.n==conf.getN());
+    int getFitness(int[] conf){
+        assert (this.n==conf.length);
         int result=0;
         for(int i=0;i<n;++i){
             for(int j=i+1;j<n;++j){
-                int distance=dist[conf.getEmplacementOfEquipment(i)][conf.getEmplacementOfEquipment(j)];
+                int distance=dist[conf[i]][conf[j]];
                 result+=weight[i][j]*distance;
             }
         }
@@ -47,7 +45,7 @@ public class ProblemSolver {
     @Override
     public String toString() {
         StringBuilder sb=new StringBuilder();
-        sb.append("ProblemSolver{\n n=");
+        sb.append("ProblemModel{\n n=");
         sb.append(n);
         sb.append("\n \n");
         sb.append("weight:\n");
@@ -73,5 +71,17 @@ public class ProblemSolver {
 
         sb.append("}");
         return sb.toString();
+    }
+    public int getN() {
+        return n;
+    }
+
+
+    public int[][] getWeight() {
+        return weight;
+    }
+
+    public int[][] getDist() {
+        return dist;
     }
 }
