@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BasicPermutation implements Landscape<int[]> {
+    @Override
     public List<int[]> getNeighbors(final int[] configuration) {
         ArrayList<int[]> neighbors=new ArrayList<>();
         for(int i=0;i<configuration.length;++i){

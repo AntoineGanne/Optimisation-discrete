@@ -13,6 +13,7 @@ public class RecuitSimule implements GenericAlgorithm<int[],ProblemModel> {
     final int MAX_STEPS=1000;
     Landscape<int[]> landscape=new BasicPermutation();
 
+    @Override
     public int[] resolve(ProblemModel model) {
         int[][] dist = model.getDist();
         int[][] weight = model.getWeight();

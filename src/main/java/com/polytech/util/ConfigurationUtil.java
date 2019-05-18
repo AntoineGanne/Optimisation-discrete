@@ -11,7 +11,7 @@ public class ConfigurationUtil {
                 result+=weight[i][j]*distance;
             }
         }
-        return result;
+        return result*2;
     }
 
     public static String ConfigToString(int[] configuration){

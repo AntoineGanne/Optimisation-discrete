@@ -28,7 +28,7 @@ public class Main {
             }
             System.out.println("\n -------------");
 
-            GenericAlgorithm<int[],ProblemModel> algo=new RandomWalk();
+            GenericAlgorithm<int[],ProblemModel> algo=new RecuitSimule();
             int[] resolve = algo.resolve(ps);
             System.out.println("meilleure solution:");
             System.out.println(ConfigurationUtil.ConfigToString(resolve));

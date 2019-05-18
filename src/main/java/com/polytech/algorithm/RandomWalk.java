@@ -12,6 +12,7 @@ public class RandomWalk implements GenericAlgorithm<int[],ProblemModel> {
     int numberOfSteps=1000;
     Landscape<int[]> landscape=new BasicPermutation();
 
+    @Override
     public int[] resolve(ProblemModel model) {
         Random rdm=new Random();
         final int[][] dist = model.getDist();
