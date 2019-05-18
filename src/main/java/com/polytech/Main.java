@@ -1,9 +1,11 @@
 package com.polytech;
 
 import com.polytech.algorithm.GenericAlgorithm;
+import com.polytech.algorithm.RandomWalk;
 import com.polytech.algorithm.RecuitSimule;
 import com.polytech.landscape.BasicPermutation;
 import com.polytech.model.ProblemModel;
+import com.polytech.util.ConfigurationUtil;
 
 import java.io.FileNotFoundException;
 import java.util.Arrays;
@@ -26,8 +28,12 @@ public class Main {
             }
             System.out.println("\n -------------");
 
-            GenericAlgorithm<int[],ProblemModel> recuit=new RecuitSimule();
-            int[] resolve = recuit.resolve(ps);
+            GenericAlgorithm<int[],ProblemModel> algo=new RandomWalk();
+            int[] resolve = algo.resolve(ps);
+            System.out.println("meilleure solution:");
+            System.out.println(ConfigurationUtil.ConfigToString(resolve));
+            System.out.println("fitness: "+ConfigurationUtil.getFitness(resolve,ps.getWeight(),ps.getDist()));
+
 
         } catch (FileNotFoundException e) {
             System.out.println("fichier non trouvé");
