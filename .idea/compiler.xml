@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Quadratic_assignement_problem" target="1.5" />
+      <module name="Quadratic_assignement_problem" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

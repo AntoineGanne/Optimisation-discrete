@@ -1,6 +1,7 @@
 package com.polytech;
 
 import com.polytech.algorithm.GenericAlgorithm;
+import com.polytech.algorithm.MethodeTabou;
 import com.polytech.algorithm.RandomWalk;
 import com.polytech.algorithm.RecuitSimule;
 import com.polytech.landscape.BasicPermutation;

@@ -1,7 +1,7 @@
 package com.polytech.util;
 
 public class ConfigurationUtil {
-    public static double getFitness(int [] configuration,int[][] weight,int[][] dist){
+    public static long getFitness(int [] configuration,int[][] weight,int[][] dist){
         int n=configuration.length;
         assert (n==weight.length && n==dist.length);
         int result=0;

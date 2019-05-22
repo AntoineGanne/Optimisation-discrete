@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 public class RecuitSimule implements GenericAlgorithm<int[],ProblemModel> {
-    final int MAX_STEPS=1000;
+    final int MAX_STEPS=100000;
     Landscape<int[]> landscape=new BasicPermutation();
 
     @Override
@@ -27,30 +27,40 @@ public class RecuitSimule implements GenericAlgorithm<int[],ProblemModel> {
 
     public int[] resolve(final int[][] weight,final int[][] dist, int[] initialSolution,double initialTemp) {
         Random rdm=new Random();
-        double mu=0.9;
+        double mu=0.999;
         int[] minSol =initialSolution.clone();
-        double minFitness=ConfigurationUtil.getFitness(initialSolution,weight,dist);
+        long minFitness=ConfigurationUtil.getFitness(initialSolution,weight,dist);
         int i=0;
         double temp=initialTemp;
         int[] solution=initialSolution.clone();
         for(int k=0;k<MAX_STEPS;++k){
+            // sélection d'un voisin aléatoire
             List<int[]> neighbors = landscape.getNeighbors(solution);
             int randomIndex=rdm.nextInt(neighbors.size());
             int[] randomNeighbor=neighbors.get(randomIndex);
-            double fitnessSolution=ConfigurationUtil.getFitness(solution,weight,dist);
-            double fitnessNeighbor=ConfigurationUtil.getFitness(randomNeighbor,weight,dist);
-            double fitnessDifference=fitnessNeighbor-fitnessSolution;
+
+            //calcul de la différence de fitness
+            long fitnessSolution=ConfigurationUtil.getFitness(solution,weight,dist);
+            long fitnessNeighbor=ConfigurationUtil.getFitness(randomNeighbor,weight,dist);
+            long fitnessDifference=fitnessNeighbor-fitnessSolution;
+
+            //application des conditions de sélection du voisin
             if(fitnessDifference<=0){
                 solution=randomNeighbor;
-                if(fitnessNeighbor<minFitness){
-                    minSol=solution.clone();
-                    minFitness=fitnessNeighbor;
-                }
             }else{
                 float p=rdm.nextFloat();
                 if(p<Math.exp(-fitnessDifference/temp)){
                     solution=randomNeighbor;
                 }
+            }
+
+            //on verifie si la fitness de la nouvelle solution est meilleure
+            if(fitnessNeighbor<minFitness){
+                minSol=solution.clone();
+                minFitness=fitnessNeighbor;
+                System.out.println("(pas n"+k+") nouvelle meilleure solution trouvée!, fitness= "+minFitness);
+                System.out.println("solution: "+ConfigurationUtil.ConfigToString(minSol)+"\n");
+
             }
             temp*=mu;
         }
