@@ -17,4 +17,13 @@ public class Permutation implements ElementaryOperation<int[]> {
         configuration[b]=buffer;
         return configuration;
     }
+
+    @Override
+    /**
+     * return the inverse operation for the tabou method.
+     * In this case, it's the same operation tbh
+     */
+    public ElementaryOperation getInverseOperation() {
+        return new Permutation(b,a);
+    }
 }
