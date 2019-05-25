@@ -29,7 +29,7 @@ public class Main {
             }
             System.out.println("\n -------------");
 
-            GenericAlgorithm<int[],ProblemModel> algo=new RecuitSimule();
+            GenericAlgorithm<int[],ProblemModel> algo=new MethodeTabou();
             int[] resolve = algo.resolve(ps);
             System.out.println("meilleure solution:");
             System.out.println(ConfigurationUtil.ConfigToString(resolve));

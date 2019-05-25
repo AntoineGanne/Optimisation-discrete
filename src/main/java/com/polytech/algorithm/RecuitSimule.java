@@ -2,6 +2,7 @@ package com.polytech.algorithm;
 
 import com.polytech.landscape.BasicPermutation;
 import com.polytech.landscape.Landscape;
+import com.polytech.landscape.Permutation;
 import com.polytech.model.ProblemModel;
 import com.polytech.util.ConfigurationUtil;
 
@@ -11,7 +12,7 @@ import java.util.Random;
 
 public class RecuitSimule implements GenericAlgorithm<int[],ProblemModel> {
     final int MAX_STEPS=100000;
-    Landscape<int[]> landscape=new BasicPermutation();
+    Landscape<int[],Permutation> landscape=new BasicPermutation();
 
     @Override
     public int[] resolve(ProblemModel model) {
