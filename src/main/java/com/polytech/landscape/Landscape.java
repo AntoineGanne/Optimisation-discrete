@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface Landscape<C,K> {
     /**
-     * return all the neighbors of given configuration
+     * return all neighbors of given configuration
      */
     List<C> getNeighbors(C configuration);
 

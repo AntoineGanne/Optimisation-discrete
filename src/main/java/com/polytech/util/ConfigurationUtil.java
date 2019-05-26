@@ -1,5 +1,9 @@
 package com.polytech.util;
 
+import com.polytech.landscape.ElementaryOperation;
+
+import java.util.List;
+
 public class ConfigurationUtil {
     /**
      * calculate fitness of the given configuration with the given weights and distances
@@ -32,6 +36,15 @@ public class ConfigurationUtil {
         }
         sb.append(" )");
         return sb.toString();
+    }
+
+    public static boolean listContainsOperation(List<ElementaryOperation> listOfOperations,ElementaryOperation searchedOperation){
+        for(ElementaryOperation operation:listOfOperations){
+            if(operation.equals(searchedOperation)){
+                return true;
+            }
+        }
+        return false;
     }
 
 }
