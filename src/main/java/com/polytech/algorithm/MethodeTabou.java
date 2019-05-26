@@ -18,11 +18,11 @@ import java.util.*;
 
 public class MethodeTabou implements GenericAlgorithm<int[],ProblemModel> {
     private static final int SIZE_TABOUS=3;
-    private static final int NB_STEPS=1000;
+    private static final int NB_STEPS=50;
     private Landscape<int[],Permutation> landscape=new BasicPermutation();
 //    private static String filePath="./resultats/fitness.txt";
 //    private BufferedWriter bufferedWriter;
-    private FileLogger fitnessLogger=new FileLogger("./resultats/fitness2.txt");
+    private FileLogger fitnessLogger=new FileLogger("./resultats/fitness.txt");
 
     public MethodeTabou(@NotNull String landscapeName ) throws Exception {
         assert (landscapeName!=null && !landscapeName.isEmpty());
@@ -78,7 +78,7 @@ public class MethodeTabou implements GenericAlgorithm<int[],ProblemModel> {
             }
 
             solution=bestNeighbor.clone();
-            fitnessLogger.write(fitnessNeighbor+"\n\r");
+            fitnessLogger.write(fitnessNeighbor+"\r");
         }
 
 
