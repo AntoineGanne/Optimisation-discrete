@@ -2,7 +2,9 @@ package com.polytech.util;
 
 import com.polytech.landscape.ElementaryOperation;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class ConfigurationUtil {
     /**
@@ -45,6 +47,22 @@ public class ConfigurationUtil {
             }
         }
         return false;
+    }
+
+    public static int[] randomConfiguration(int n){
+        ArrayList<Integer> unaffectedMachines= new ArrayList<>(n);
+        Random rdm=new Random();
+        for(int i=1;i<=n;++i){
+            unaffectedMachines.add(i);
+        }
+        int[] configuration=new int[n];
+        for(int i=0;i<n;++i){
+            int randomIndex = rdm.nextInt(unaffectedMachines.size());
+            Integer randomMachine = unaffectedMachines.get(randomIndex);
+            configuration[i]=randomMachine;
+            unaffectedMachines.remove(randomIndex);
+        }
+        return configuration;
     }
 
 }

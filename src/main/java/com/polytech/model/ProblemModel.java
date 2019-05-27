@@ -6,12 +6,14 @@ import java.util.Scanner;
 
 public class ProblemModel {
     int n;
-
     int[][] weight;
     int[][] dist;
 
 
+    String name;
+
     public ProblemModel(String filePath) throws FileNotFoundException {
+        name=filePath;
         Scanner scannerDoc = new Scanner(new FileReader(filePath));
         n=scannerDoc.nextInt();
 
@@ -45,7 +47,7 @@ public class ProblemModel {
     @Override
     public String toString() {
         StringBuilder sb=new StringBuilder();
-        sb.append("ProblemModel{\n n=");
+        sb.append(name).append("{\n n=");
         sb.append(n);
         sb.append("\n \n");
         sb.append("weight:\n");
@@ -84,4 +86,9 @@ public class ProblemModel {
     public int[][] getDist() {
         return dist;
     }
+
+    public String getName() {
+        return name;
+    }
+
 }

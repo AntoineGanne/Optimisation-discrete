@@ -8,6 +8,8 @@ import java.io.IOException;
 
 public class FileLogger {
     static final int LENGTH_TO_SEND=100;
+    static final String CRLF="\r\n";
+    static final String TAB="\t";
     @NotNull
     private String filePath;
     private StringBuilder stringBuilder=new StringBuilder();
@@ -31,22 +33,9 @@ public class FileLogger {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-//        if(stringBuilder.length()>LENGTH_TO_SEND){
-//            writeToFile();
-//            stringBuilder=new StringBuilder();
-//        }
-
+    }
+    public void writeLine(String content){
+        write(content+CRLF);
     }
 
-    private void writeToFile(){
-        try (FileWriter writer = new FileWriter(filePath)) {
-            BufferedWriter bufferedWriter = new BufferedWriter(writer);
-            bufferedWriter.write(stringBuilder.toString());
-            bufferedWriter.flush();
-            bufferedWriter.close();
-        } catch (IOException e) {
-            System.err.format("IOException: %s%n", e);
-        }
-    }
 }

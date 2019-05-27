@@ -5,35 +5,28 @@ import com.polytech.landscape.ElementaryOperation;
 import com.polytech.landscape.Landscape;
 import com.polytech.landscape.Permutation;
 import com.polytech.logger.FileLogger;
+import com.polytech.logger.FitnessLogger;
 import com.polytech.model.ProblemModel;
 import com.polytech.util.ConfigurationUtil;
 import com.sun.istack.internal.NotNull;
 
-import javax.xml.bind.Element;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.*;
 
 public class MethodeTabou implements GenericAlgorithm<int[],ProblemModel> {
-    private static final int SIZE_TABOUS=3;
-    private static final int NB_STEPS=50;
-    private Landscape<int[],Permutation> landscape=new BasicPermutation();
-//    private static String filePath="./resultats/fitness.txt";
-//    private BufferedWriter bufferedWriter;
-    private FileLogger fitnessLogger=new FileLogger("./resultats/fitness.txt");
+    private int sizeTabou =1;
+    private int nbSteps =100;
+    private Landscape landscape=new BasicPermutation();
+    private FitnessLogger fitnessLogger=new FitnessLogger("./resultats/fitnessTabou.txt");
 
-    public MethodeTabou(@NotNull String landscapeName ) throws Exception {
+    public MethodeTabou(@NotNull String landscapeName,int tabouLength, int nbStepsInput) throws Exception {
         assert (landscapeName!=null && !landscapeName.isEmpty());
-        switch (landscapeName){
-            case BasicPermutation.NAME:
-                landscape=new BasicPermutation();
-                break;
-            default:
-                throw new Exception("landscape unknown");
-        }
+        landscape=Landscape.getLandscape(landscapeName);
+        sizeTabou=tabouLength;
+        nbSteps=nbStepsInput;
+
     }
+
+
 
 
     @Override
@@ -44,6 +37,7 @@ public class MethodeTabou implements GenericAlgorithm<int[],ProblemModel> {
         for(int i=0;i<initialSolution.length;++i){
             initialSolution[i]=i+1;
         }
+        writeBaseInfosOnLoggers(model.getName());
         return resolve(initialSolution,weight,dist);
     }
 
@@ -51,14 +45,13 @@ public class MethodeTabou implements GenericAlgorithm<int[],ProblemModel> {
         //initialisation
         Random rdm=new Random();
         final int n=initialSolution.length;
-        List<Permutation> allOperations = landscape.getElementaryOperations(n);
         int[] bestSolution=initialSolution.clone();
         long bestFitness=ConfigurationUtil.getFitness(bestSolution,weight,dist);
         Queue<ElementaryOperation<int[]>> tabous =new LinkedList<>();
         int[] solution=initialSolution.clone();
 
         //iteration
-        for(int i=0;i<NB_STEPS;++i){
+        for(int i = 0; i< nbSteps; ++i){
             //select of a random neighbor;
             ArrayList<ElementaryOperation> unauthorizedOperations=new ArrayList<>(tabous);
 
@@ -68,7 +61,7 @@ public class MethodeTabou implements GenericAlgorithm<int[],ProblemModel> {
             long fitnessDifference=fitnessNeighbor-ConfigurationUtil.getFitness(solution,weight,dist);
             if(fitnessDifference>=0){
                 tabous.add(bestNeighborOperation);
-                if(tabous.size()>SIZE_TABOUS){
+                if(tabous.size()> sizeTabou){
                     tabous.remove();
                 }
             }
@@ -103,5 +96,14 @@ public class MethodeTabou implements GenericAlgorithm<int[],ProblemModel> {
             }
         }
         return bestOperation;
+    }
+
+    private void writeBaseInfosOnLoggers(String nameProblemModel){
+        StringBuilder introductionBuilder = new StringBuilder();
+        introductionBuilder.append("Algorithme de Recuit Simulé sur \t"+nameProblemModel+" \n");
+        introductionBuilder.append("landscape:"+landscape.getClass());
+        introductionBuilder.append("taille tabou="+sizeTabou+"\t nbMaxSteps="+nbSteps+"\n");
+        fitnessLogger.writeLine(introductionBuilder.toString());
+        fitnessLogger.writeEntete();
     }
 }

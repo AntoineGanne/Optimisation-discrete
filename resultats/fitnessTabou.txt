@@ -1,0 +1,5 @@
+Algorithme de Recuit Simulé sur 	./data/test.txt 
+landscape:class com.polytech.landscape.BasicPermutationtaille tabou=1	 nbMaxSteps=30
+
+step	configuration	fitness
+141616141616141616141616141616141616141616141616141616141616

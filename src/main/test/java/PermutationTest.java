@@ -60,16 +60,6 @@ class PermutationTest {
 
         list.add(e1);
 
-        ArrayList<ElementaryOperation> elementsToRemove = new ArrayList<>();
-        elementsToRemove.add(e1prime);
-        elementsToRemove.add(new Permutation(2,3));
 
-        assert(elementsToRemove.contains(e1prime));
-
-        assert(elementsToRemove.contains(e1));
-
-        list.removeIf(elementsToRemove :: contains);
-
-        assertEquals(list.size(),1);
     }
 }

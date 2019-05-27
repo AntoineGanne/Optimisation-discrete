@@ -12,4 +12,16 @@ public interface Landscape<C,K> {
      * return all the possible elementary operations
      */
     List<K> getElementaryOperations(int n);
+
+    static Landscape getLandscape(String landscapeName) throws Exception {
+        Landscape l;
+        switch (landscapeName){
+            case BasicPermutation.NAME:
+                l=new BasicPermutation();
+                break;
+            default:
+                throw new Exception("landscape unknown");
+        }
+        return l;
+    }
 }

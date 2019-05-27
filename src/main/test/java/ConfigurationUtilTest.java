@@ -47,4 +47,23 @@ class ConfigurationUtilTest {
         double fitness = ConfigurationUtil.getFitness(configuration, pm.getWeight(), pm.getDist());
         assertEquals(fitness,224416);
     }
+
+    @Test
+    @DisplayName("test de génération de config aléatoire")
+    void randomConfigurationTest(){
+        int n=20;
+        int[] rdmConfig = ConfigurationUtil.randomConfiguration(n);
+        for(int machineID=1;machineID<=n;++machineID){
+            boolean presenceInConfig=false;
+            for(int i=0;i<n;i++){
+                if(rdmConfig[i]==machineID){
+                    presenceInConfig=true;
+                    break;
+                }
+            }
+            if(!presenceInConfig){
+                fail("Au moins une machine non présente dans la configuration aléatoire");
+            }
+        }
+    }
 }

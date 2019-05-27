@@ -1,0 +1,35 @@
+Bonjour!
+Algorithme de Recuit Simulé sur 	./data/test.txt 
+mu=0.8	 p=0.7	 nbMaxSteps=30
+
+step	configuration	fitness
+0	Config{ 1, 2, 3 )	14
+1	Config{ 1, 3, 2 )	18
+2	Config{ 3, 1, 2 )	16
+3	Config{ 2, 1, 3 )	16
+4	Config{ 2, 3, 1 )	18
+5	Config{ 1, 3, 2 )	18
+6	Config{ 1, 2, 3 )	14
+7	Config{ 2, 1, 3 )	16
+8	Config{ 3, 1, 2 )	16
+9	Config{ 3, 2, 1 )	14
+10	Config{ 3, 2, 1 )	14
+11	Config{ 3, 2, 1 )	14
+12	Config{ 3, 2, 1 )	14
+13	Config{ 3, 2, 1 )	14
+14	Config{ 3, 2, 1 )	14
+15	Config{ 3, 2, 1 )	14
+16	Config{ 3, 2, 1 )	14
+17	Config{ 3, 2, 1 )	14
+18	Config{ 1, 2, 3 )	14
+19	Config{ 1, 2, 3 )	14
+20	Config{ 1, 2, 3 )	14
+21	Config{ 1, 2, 3 )	14
+22	Config{ 1, 2, 3 )	14
+23	Config{ 1, 2, 3 )	14
+24	Config{ 3, 2, 1 )	14
+25	Config{ 3, 2, 1 )	14
+26	Config{ 1, 2, 3 )	14
+27	Config{ 3, 2, 1 )	14
+28	Config{ 3, 2, 1 )	14
+29	Config{ 3, 2, 1 )	14
