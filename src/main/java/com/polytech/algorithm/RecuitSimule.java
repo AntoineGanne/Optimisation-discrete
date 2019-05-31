@@ -41,7 +41,6 @@ public class RecuitSimule implements GenericAlgorithm<int[],ProblemModel> {
 
     private void writeBaseInfosOnLoggers(String nameProblemModel){
         StringBuilder introductionBuilder = new StringBuilder();
-        introductionBuilder.append("Bonjour!\n");
         introductionBuilder.append("Algorithme de Recuit Simulé sur \t"+nameProblemModel+" \n");
         introductionBuilder.append("mu="+mu+"\t p="+p+"\t nbMaxSteps="+nbMaxSteps+"\n");
         fitnessLogger.writeLine(introductionBuilder.toString());

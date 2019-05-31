@@ -27,10 +27,10 @@ public class MethodeTabou implements GenericAlgorithm<int[],ProblemModel> {
     }
 
 
-
-
     @Override
     public int[] resolve(ProblemModel model) {
+
+
         int[][] dist = model.getDist();
         int[][] weight = model.getWeight();
         int[] initialSolution=new int[model.getN()];
@@ -47,18 +47,22 @@ public class MethodeTabou implements GenericAlgorithm<int[],ProblemModel> {
         final int n=initialSolution.length;
         int[] bestSolution=initialSolution.clone();
         long bestFitness=ConfigurationUtil.getFitness(bestSolution,weight,dist);
+
+        assert (sizeTabou>=0 && sizeTabou<=initialSolution.length);
         Queue<ElementaryOperation<int[]>> tabous =new LinkedList<>();
         int[] solution=initialSolution.clone();
 
+
         //iteration
-        for(int i = 0; i< nbSteps; ++i){
+        for(int k = 0; k< nbSteps; ++k){
             //select of a random neighbor;
             ArrayList<ElementaryOperation> unauthorizedOperations=new ArrayList<>(tabous);
 
             ElementaryOperation<int[]> bestNeighborOperation= getBestOperation(solution,unauthorizedOperations,weight,dist);
             int[] bestNeighbor=bestNeighborOperation.applyOperation(solution);
             long fitnessNeighbor=ConfigurationUtil.getFitness(bestNeighbor,weight,dist);
-            long fitnessDifference=fitnessNeighbor-ConfigurationUtil.getFitness(solution,weight,dist);
+            long fitnessSolution=ConfigurationUtil.getFitness(solution,weight,dist);
+            long fitnessDifference=fitnessNeighbor-fitnessSolution;
             if(fitnessDifference>=0){
                 tabous.add(bestNeighborOperation);
                 if(tabous.size()> sizeTabou){
@@ -69,9 +73,9 @@ public class MethodeTabou implements GenericAlgorithm<int[],ProblemModel> {
                 bestFitness=fitnessNeighbor;
                 bestSolution=bestNeighbor.clone();
             }
+            fitnessLogger.writeLineFitnessTabou(k,solution,fitnessSolution,unauthorizedOperations);
 
             solution=bestNeighbor.clone();
-            fitnessLogger.write(fitnessNeighbor+"\r");
         }
 
 
@@ -101,9 +105,9 @@ public class MethodeTabou implements GenericAlgorithm<int[],ProblemModel> {
     private void writeBaseInfosOnLoggers(String nameProblemModel){
         StringBuilder introductionBuilder = new StringBuilder();
         introductionBuilder.append("Algorithme de Recuit Simulé sur \t"+nameProblemModel+" \n");
-        introductionBuilder.append("landscape:"+landscape.getClass());
+        introductionBuilder.append("landscape:"+landscape.getClass()+"\n");
         introductionBuilder.append("taille tabou="+sizeTabou+"\t nbMaxSteps="+nbSteps+"\n");
         fitnessLogger.writeLine(introductionBuilder.toString());
-        fitnessLogger.writeEntete();
+        fitnessLogger.writeEnteteTabou();
     }
 }

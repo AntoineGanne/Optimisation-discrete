@@ -2,9 +2,8 @@ package com.polytech.logger;
 
 import com.sun.istack.internal.NotNull;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class FileLogger {
     static final int LENGTH_TO_SEND=100;
@@ -13,13 +12,12 @@ public class FileLogger {
     @NotNull
     private String filePath;
     private StringBuilder stringBuilder=new StringBuilder();
-    private BufferedWriter bufferedWriter;
+    private Writer fstream;
 
     public FileLogger(String filePath) {
         this.filePath = filePath;
         try{
-            FileWriter writer = new FileWriter(filePath);
-            bufferedWriter=new BufferedWriter(writer);
+            fstream=new OutputStreamWriter(new FileOutputStream(filePath),StandardCharsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -28,8 +26,8 @@ public class FileLogger {
     public void write(String content){
         stringBuilder.append(content);
         try {
-            bufferedWriter.write(content);
-            bufferedWriter.flush();
+            fstream.write(content);
+            fstream.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }

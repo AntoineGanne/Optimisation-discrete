@@ -29,7 +29,7 @@ public class ConfigurationUtil {
 
     public static String ConfigToString(int[] configuration){
         StringBuilder sb=new StringBuilder();
-        sb.append("Config{ ");
+        sb.append("Config( ");
         for(int i=0;i<configuration.length;++i){
             sb.append(configuration[i]);
             if(i<configuration.length-1){

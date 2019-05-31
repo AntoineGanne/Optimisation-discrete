@@ -32,17 +32,6 @@ public class ProblemModel {
         }
     }
 
-    int getFitness(int[] conf){
-        assert (this.n==conf.length);
-        int result=0;
-        for(int i=0;i<n;++i){
-            for(int j=i+1;j<n;++j){
-                int distance=dist[conf[i]][conf[j]];
-                result+=weight[i][j]*distance;
-            }
-        }
-        return result;
-    }
 
     @Override
     public String toString() {

@@ -7,4 +7,5 @@ public interface ElementaryOperation <C>{
 
     public Boolean equals(ElementaryOperation comparedPermutation);
 
+
 }

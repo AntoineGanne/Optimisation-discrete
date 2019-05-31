@@ -53,6 +53,11 @@ public class Permutation implements ElementaryOperation<int[]> {
         return result;
     }
 
+    @Override
+    public String toString(){
+        return " ("+a+"-"+b+") ";
+    }
+
     public int getA() {
         return a;
     }

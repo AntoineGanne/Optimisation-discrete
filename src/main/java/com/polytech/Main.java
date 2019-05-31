@@ -37,8 +37,8 @@ public class Main {
         GenericAlgorithm<int[],ProblemModel> algo= null;
         try {
 //            algo = new RecuitSimule(BasicPermutation.NAME,30,0.8,0.7);
-            algo = new MethodeTabou(BasicPermutation.NAME,1,30);
-
+//            algo = new MethodeTabou(BasicPermutation.NAME,1,30);
+            algo=new RandomWalk(BasicPermutation.NAME,30);
         } catch (Exception e) {
             e.printStackTrace();
             return;
