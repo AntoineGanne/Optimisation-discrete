@@ -36,4 +36,8 @@ public class FileLogger {
         write(content+CRLF);
     }
 
+    public void nextLine(){
+        write(CRLF);
+    }
+
 }

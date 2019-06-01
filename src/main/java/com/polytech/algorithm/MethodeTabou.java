@@ -51,7 +51,7 @@ public class MethodeTabou implements GenericAlgorithm<int[],ProblemModel> {
         assert (sizeTabou>=0 && sizeTabou<=initialSolution.length);
         Queue<ElementaryOperation<int[]>> tabous =new LinkedList<>();
         int[] solution=initialSolution.clone();
-
+        long fitnessSolution=ConfigurationUtil.getFitness(solution,weight,dist);
 
         //iteration
         for(int k = 0; k< nbSteps; ++k){
@@ -61,7 +61,7 @@ public class MethodeTabou implements GenericAlgorithm<int[],ProblemModel> {
             ElementaryOperation<int[]> bestNeighborOperation= getBestOperation(solution,unauthorizedOperations,weight,dist);
             int[] bestNeighbor=bestNeighborOperation.applyOperation(solution);
             long fitnessNeighbor=ConfigurationUtil.getFitness(bestNeighbor,weight,dist);
-            long fitnessSolution=ConfigurationUtil.getFitness(solution,weight,dist);
+
             long fitnessDifference=fitnessNeighbor-fitnessSolution;
             if(fitnessDifference>=0){
                 tabous.add(bestNeighborOperation);
@@ -76,6 +76,7 @@ public class MethodeTabou implements GenericAlgorithm<int[],ProblemModel> {
             fitnessLogger.writeLineFitnessTabou(k,solution,fitnessSolution,unauthorizedOperations);
 
             solution=bestNeighbor.clone();
+            fitnessSolution=fitnessNeighbor;
         }
 
 

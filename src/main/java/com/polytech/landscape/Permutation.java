@@ -1,5 +1,7 @@
 package com.polytech.landscape;
 
+import java.util.Random;
+
 /**
  * Permutation of two elements at specified positions
  */
@@ -12,6 +14,19 @@ public class Permutation implements ElementaryOperation<int[]> {
         assert (lowestIndex<highestIndex);
         this.a = lowestIndex;
         this.b = highestIndex;
+    }
+
+    /**
+     * constructor of random Permutation
+     * @param n
+     */
+    public Permutation (int n) {
+        Random rdm=new Random();
+        int randomA = rdm.nextInt(n-1);
+        int randomB = rdm.nextInt(n-randomA-1)+1;
+
+        this.a=randomA;
+        this.b=randomA+randomB;
     }
 
     @Override
@@ -43,6 +58,8 @@ public class Permutation implements ElementaryOperation<int[]> {
             return a==permutation.getA()&&b==permutation.getB();
         }
     }
+
+
 
     @Override
     public int hashCode() {

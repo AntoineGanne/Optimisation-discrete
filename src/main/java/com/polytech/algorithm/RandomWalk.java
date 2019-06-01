@@ -1,6 +1,7 @@
 package com.polytech.algorithm;
 
 import com.polytech.landscape.BasicPermutation;
+import com.polytech.landscape.ElementaryOperation;
 import com.polytech.landscape.Landscape;
 import com.polytech.landscape.Permutation;
 import com.polytech.logger.FitnessLogger;
@@ -26,6 +27,7 @@ public class RandomWalk implements GenericAlgorithm<int[],ProblemModel> {
     @Override
     public int[] resolve(ProblemModel model) {
         Random rdm=new Random();
+        int n=model.getN();
         final int[][] dist = model.getDist();
         final int[][] weight = model.getWeight();
         int[] initialSolution=ConfigurationUtil.randomConfiguration(model.getN());
@@ -38,9 +40,7 @@ public class RandomWalk implements GenericAlgorithm<int[],ProblemModel> {
 
         for(int i=0;i<numberOfSteps;++i){
             fitnessLogger.writeLineFitness(i,solution,fitness);
-            List<int[]> neighbors = landscape.getNeighbors(solution);
-            int randomIndex=rdm.nextInt(neighbors.size());
-            solution=neighbors.get(randomIndex).clone();
+            solution=landscape.getRandomNeighbor(solution);
             fitness = ConfigurationUtil.getFitness(solution, weight, dist);
             if(fitness<bestfitness){
                 bestfitness=fitness;

@@ -63,18 +63,17 @@ public class RecuitSimule implements GenericAlgorithm<int[],ProblemModel> {
 
     public int[] resolve(final int[][] weight,final int[][] dist, int[] initialSolution,double initialTemp) {
         Random rdm=new Random();
+        assert (initialTemp > 0);
         int[] minSol =initialSolution.clone();
         long minFitness=ConfigurationUtil.getFitness(initialSolution,weight,dist);
         double temp=initialTemp;
         int[] solution=initialSolution.clone();
+        long fitnessSolution=ConfigurationUtil.getFitness(solution,weight,dist);
         for(int k = 0; k< nbMaxSteps; ++k){
-            long fitnessSolution=ConfigurationUtil.getFitness(solution,weight,dist);
             fitnessLogger.writeLineFitness(k,solution,fitnessSolution);
 
             // sélection d'un voisin aléatoire
-            List<int[]> neighbors = landscape.getNeighbors(solution);
-            int randomIndex=rdm.nextInt(neighbors.size());
-            int[] randomNeighbor=neighbors.get(randomIndex);
+            int[] randomNeighbor = landscape.getRandomNeighbor(solution);
 
             //calcul de la différence de fitness
             long fitnessNeighbor=ConfigurationUtil.getFitness(randomNeighbor,weight,dist);
@@ -83,10 +82,12 @@ public class RecuitSimule implements GenericAlgorithm<int[],ProblemModel> {
             //application des conditions de sélection du voisin
             if(fitnessDifference<=0){
                 solution=randomNeighbor;
+                fitnessSolution=fitnessNeighbor;
             }else{
                 float p=rdm.nextFloat();
                 if(p<Math.exp(-fitnessDifference/temp)){
                     solution=randomNeighbor;
+                    fitnessSolution=fitnessNeighbor;
                 }
             }
 

@@ -1,7 +1,10 @@
 package com.polytech.landscape;
 
+import com.polytech.algorithm.RandomWalk;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class BasicPermutation implements Landscape<int[], Permutation> {
     public  static final String NAME="BasicPermutation";
@@ -15,6 +18,13 @@ public class BasicPermutation implements Landscape<int[], Permutation> {
             }
         }
         return neighbors;
+    }
+
+    @Override
+    public int[] getRandomNeighbor(int[] configuration) {
+        int n=configuration.length;
+        ElementaryOperation randomOperation =new Permutation(n);
+        return ((Permutation) randomOperation).applyOperation(configuration);
     }
 
     @Override

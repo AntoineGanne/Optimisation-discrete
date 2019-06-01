@@ -8,6 +8,8 @@ public interface Landscape<C,K> {
      */
     List<C> getNeighbors(C configuration);
 
+    C getRandomNeighbor(C configuration);
+
     /**
      * return all the possible elementary operations
      */
