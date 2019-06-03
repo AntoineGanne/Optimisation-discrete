@@ -21,6 +21,11 @@ public class RecuitSimule implements GenericAlgorithm<int[],ProblemModel> {
 
     FitnessLogger fitnessLogger=new FitnessLogger("./resultats/fitnessRecuit.txt");
 
+
+    private int[] bestSolution;
+    private long bestFitness;
+    private int stepOfBestSolution;
+
     /**
      * constructor
      * @param landscapeName
@@ -64,8 +69,8 @@ public class RecuitSimule implements GenericAlgorithm<int[],ProblemModel> {
     public int[] resolve(final int[][] weight,final int[][] dist, int[] initialSolution,double initialTemp) {
         Random rdm=new Random();
         assert (initialTemp > 0);
-        int[] minSol =initialSolution.clone();
-        long minFitness=ConfigurationUtil.getFitness(initialSolution,weight,dist);
+        bestSolution =initialSolution.clone();
+        bestFitness=ConfigurationUtil.getFitness(initialSolution,weight,dist);
         double temp=initialTemp;
         int[] solution=initialSolution.clone();
         long fitnessSolution=ConfigurationUtil.getFitness(solution,weight,dist);
@@ -92,11 +97,12 @@ public class RecuitSimule implements GenericAlgorithm<int[],ProblemModel> {
             }
 
             //on verifie si la fitness de la nouvelle solution est meilleure
-            if(fitnessNeighbor<minFitness){
-                minSol=solution.clone();
-                minFitness=fitnessNeighbor;
-                System.out.println("(pas n"+k+") nouvelle meilleure solution trouvée!, fitness= "+minFitness);
-                System.out.println("solution: "+ConfigurationUtil.ConfigToString(minSol)+"\n");
+            if(fitnessNeighbor<bestFitness){
+                bestSolution=solution.clone();
+                bestFitness=fitnessNeighbor;
+                stepOfBestSolution=k;
+                System.out.println("(pas n"+k+") nouvelle meilleure solution trouvée!, fitness= "+bestFitness);
+                System.out.println("solution: "+ConfigurationUtil.ConfigToString(bestSolution)+"\n");
 
             }
 
