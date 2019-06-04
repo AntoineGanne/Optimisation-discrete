@@ -1,0 +1,14 @@
+Temps d'exection |ms] selon les méthodes et selon la dimension n
+n \ méthodemarche aléatoire	Recuit simulé	Méthode Tabou	
+12	10	9	28	
+15	6	8	30	
+17	6	6	47	
+20	6	8	72	
+25	7	8	185	
+30	6	28	225	
+35	8	7	408	
+40	6	9	684	
+50	8	11	1484	
+60	9	12	2968	
+80	11	19	9531	
+100	15	25	22743	

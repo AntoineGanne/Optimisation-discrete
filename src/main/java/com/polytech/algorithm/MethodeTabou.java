@@ -18,6 +18,10 @@ public class MethodeTabou implements GenericAlgorithm<int[],ProblemModel> {
     private Landscape landscape=new BasicPermutation();
     private FitnessLogger fitnessLogger=new FitnessLogger("./resultats/fitnessTabou.txt");
 
+    private int[] bestSolution;
+    private long bestFitness;
+    private int stepOfBestSolution;
+
     public MethodeTabou(@NotNull String landscapeName,int tabouLength, int nbStepsInput) throws Exception {
         assert (landscapeName!=null && !landscapeName.isEmpty());
         landscape=Landscape.getLandscape(landscapeName);
@@ -41,12 +45,14 @@ public class MethodeTabou implements GenericAlgorithm<int[],ProblemModel> {
         return resolve(initialSolution,weight,dist);
     }
 
+
+
     private int[] resolve(int[] initialSolution,int[][] weight,int[][] dist){
         //initialisation
         Random rdm=new Random();
         final int n=initialSolution.length;
-        int[] bestSolution=initialSolution.clone();
-        long bestFitness=ConfigurationUtil.getFitness(bestSolution,weight,dist);
+        bestSolution=initialSolution.clone();
+        bestFitness=ConfigurationUtil.getFitness(bestSolution,weight,dist);
 
         assert (sizeTabou>=0 && sizeTabou<=initialSolution.length);
         Queue<ElementaryOperation<int[]>> tabous =new LinkedList<>();
@@ -72,6 +78,7 @@ public class MethodeTabou implements GenericAlgorithm<int[],ProblemModel> {
             if(fitnessNeighbor<bestFitness){
                 bestFitness=fitnessNeighbor;
                 bestSolution=bestNeighbor.clone();
+                stepOfBestSolution=k;
             }
             fitnessLogger.writeLineFitnessTabou(k,solution,fitnessSolution,unauthorizedOperations);
 
@@ -110,5 +117,20 @@ public class MethodeTabou implements GenericAlgorithm<int[],ProblemModel> {
         introductionBuilder.append("taille tabou="+sizeTabou+"\t nbMaxSteps="+nbSteps+"\n");
         fitnessLogger.writeLine(introductionBuilder.toString());
         fitnessLogger.writeEnteteTabou();
+    }
+
+    @Override
+    public int[] getBestSolution() {
+        return bestSolution;
+    }
+
+    @Override
+    public long getBestFitness() {
+        return bestFitness;
+    }
+
+    @Override
+    public int getStepOfBestSolution() {
+        return stepOfBestSolution;
     }
 }

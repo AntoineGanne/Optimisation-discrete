@@ -110,9 +110,9 @@ public class RecuitSimule implements GenericAlgorithm<int[],ProblemModel> {
         }
 
         System.out.println("Recuit Simulé:\n" +
-                "solution trouvée:" + Arrays.toString(minSol)+"\n" +
-                "avec fitness de:"+minFitness);
-        return minSol;
+                "solution trouvée:" + Arrays.toString(bestSolution)+"\n" +
+                "avec fitness de:"+bestFitness);
+        return bestSolution;
     }
 
     private Double calculateInitialTemperature(final double p,final int[][] weight,final int[][] dist){
@@ -140,4 +140,18 @@ public class RecuitSimule implements GenericAlgorithm<int[],ProblemModel> {
         return t0;
     }
 
+    @Override
+    public int[] getBestSolution() {
+        return bestSolution;
+    }
+
+    @Override
+    public long getBestFitness() {
+        return bestFitness;
+    }
+
+    @Override
+    public int getStepOfBestSolution() {
+        return stepOfBestSolution;
+    }
 }

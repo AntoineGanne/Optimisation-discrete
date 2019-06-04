@@ -18,6 +18,11 @@ public class RandomWalk implements GenericAlgorithm<int[],ProblemModel> {
 
     FitnessLogger fitnessLogger =new FitnessLogger("./resultats/fitnessRandom.txt");
 
+
+    private int[] bestSolution;
+    private long bestFitness;
+    private int stepOfBestSolution;
+
     public RandomWalk(@NotNull String landscapeName, int nbStepsInput) throws Exception {
         assert (landscapeName!=null && !landscapeName.isEmpty());
         landscape=Landscape.getLandscape(landscapeName);
@@ -31,20 +36,21 @@ public class RandomWalk implements GenericAlgorithm<int[],ProblemModel> {
         final int[][] dist = model.getDist();
         final int[][] weight = model.getWeight();
         int[] initialSolution=ConfigurationUtil.randomConfiguration(model.getN());
-        int[] bestSolution=initialSolution.clone();
+        bestSolution=initialSolution.clone();
         int[] solution=initialSolution.clone();
         long fitness= ConfigurationUtil.getFitness(solution,weight,dist);
-        long bestfitness=fitness;
+        bestFitness=fitness;
 
         writeBaseInfosOnLoggers(model.getName());
 
-        for(int i=0;i<numberOfSteps;++i){
-            fitnessLogger.writeLineFitness(i,solution,fitness);
+        for(int k=0;k<numberOfSteps;++k){
+            fitnessLogger.writeLineFitness(k,solution,fitness);
             solution=landscape.getRandomNeighbor(solution);
             fitness = ConfigurationUtil.getFitness(solution, weight, dist);
-            if(fitness<bestfitness){
-                bestfitness=fitness;
+            if(fitness<bestFitness){
+                bestFitness=fitness;
                 bestSolution=solution.clone();
+                stepOfBestSolution=k;
             }
         }
         return bestSolution;
@@ -57,4 +63,17 @@ public class RandomWalk implements GenericAlgorithm<int[],ProblemModel> {
         fitnessLogger.writeLine(introductionBuilder.toString());
         fitnessLogger.writeEntete();
     }
+
+    public int[] getBestSolution() {
+        return bestSolution;
+    }
+
+    public long getBestFitness() {
+        return bestFitness;
+    }
+
+    public int getStepOfBestSolution() {
+        return stepOfBestSolution;
+    }
+
 }

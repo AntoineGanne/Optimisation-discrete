@@ -17,7 +17,7 @@ public class Main {
     public static void main(String[] args) {
         ProblemModel ps;
         try {
-            ps=new ProblemModel("./data/test.txt");
+            ps=new ProblemModel("./data/tai12.txt");
             System.out.println(ps.toString());
         } catch (FileNotFoundException e) {
             System.out.println("fichier non trouvé");
@@ -36,9 +36,9 @@ public class Main {
 
         GenericAlgorithm<int[],ProblemModel> algo= null;
         try {
-//            algo = new RecuitSimule(BasicPermutation.NAME,30,0.8,0.7);
+            algo = new RecuitSimule(BasicPermutation.NAME,30,0.8,0.7);
 //            algo = new MethodeTabou(BasicPermutation.NAME,1,30);
-            algo=new RandomWalk(BasicPermutation.NAME,30);
+//            algo=new RandomWalk(BasicPermutation.NAME,30);
         } catch (Exception e) {
             e.printStackTrace();
             return;
