@@ -9,6 +9,7 @@ import com.polytech.model.ProblemModel;
 import com.polytech.util.ConfigurationUtil;
 import com.sun.istack.internal.NotNull;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -53,6 +54,10 @@ public class RandomWalk implements GenericAlgorithm<int[],ProblemModel> {
                 stepOfBestSolution=k;
             }
         }
+
+        System.out.println("marche aléatoire:\n" +
+                "solution trouvée:" + Arrays.toString(bestSolution)+"\n" +
+                "avec fitness de:"+bestFitness);
         return bestSolution;
     }
 

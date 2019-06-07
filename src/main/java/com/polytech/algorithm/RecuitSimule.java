@@ -26,6 +26,8 @@ public class RecuitSimule implements GenericAlgorithm<int[],ProblemModel> {
     private long bestFitness;
     private int stepOfBestSolution;
 
+
+
     /**
      * constructor
      * @param landscapeName
@@ -98,11 +100,11 @@ public class RecuitSimule implements GenericAlgorithm<int[],ProblemModel> {
 
             //on verifie si la fitness de la nouvelle solution est meilleure
             if(fitnessNeighbor<bestFitness){
-                bestSolution=solution.clone();
+                bestSolution=randomNeighbor.clone();
                 bestFitness=fitnessNeighbor;
                 stepOfBestSolution=k;
-                System.out.println("(pas n"+k+") nouvelle meilleure solution trouvée!, fitness= "+bestFitness);
-                System.out.println("solution: "+ConfigurationUtil.ConfigToString(bestSolution)+"\n");
+//                System.out.println("(pas n"+k+") nouvelle meilleure solution trouvée!, fitness= "+bestFitness);
+//                System.out.println("solution: "+ConfigurationUtil.ConfigToString(bestSolution)+"\n");
 
             }
 

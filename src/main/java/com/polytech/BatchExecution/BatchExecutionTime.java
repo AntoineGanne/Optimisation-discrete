@@ -35,7 +35,7 @@ public class BatchExecutionTime {
         batchLogger.writeLine(new String[]{"n \\ méthode+","marche aléatoire","Recuit simulé","Méthode Tabou"});
 
         ArrayList<String> line;
-        GenericAlgorithm algorithm;
+        GenericAlgorithm<int[],ProblemModel>  algorithm;
         long[] values;
         long startTime,endTime,duration;
         for(String n:instances){
@@ -60,7 +60,8 @@ public class BatchExecutionTime {
                 endTime=System.currentTimeMillis();
                 duration=endTime-startTime;
                 if(k==0){ values[0]=duration; }
-                else{                    long currentMean=values[1];
+                else{
+                    long currentMean=values[1];
                     values[1]=(currentMean*(k-1)+duration)/k;
                 }
 

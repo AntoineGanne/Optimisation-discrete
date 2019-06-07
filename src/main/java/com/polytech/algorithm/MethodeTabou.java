@@ -86,7 +86,9 @@ public class MethodeTabou implements GenericAlgorithm<int[],ProblemModel> {
             fitnessSolution=fitnessNeighbor;
         }
 
-
+        System.out.println("Méthode Tabou:\n" +
+                "solution trouvée:" + Arrays.toString(bestSolution)+"\n" +
+                "avec fitness de:"+bestFitness);
         return bestSolution;
     }
 
