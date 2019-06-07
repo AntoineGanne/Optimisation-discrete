@@ -6,17 +6,15 @@ import com.polytech.algorithm.RandomWalk;
 import com.polytech.algorithm.RecuitSimule;
 import com.polytech.landscape.BasicPermutation;
 import com.polytech.logger.BatchLogger;
-import com.polytech.logger.FileLogger;
 import com.polytech.model.ProblemModel;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public class Batch {
+public class BatchExecutionTime {
     public static void main(String[] args){
-        Batch batch=new Batch("./resultats/executionTimes.txt");
+        BatchExecutionTime batchExecutionTime =new BatchExecutionTime("./resultats/executionTimes.txt");
         try {
-            batch.execute("Temps d'execution |ms] selon les méthodes et selon la dimension n");
+            batchExecutionTime.execute("Temps d'execution |ms] selon les méthodes et selon la dimension n");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -28,7 +26,7 @@ public class Batch {
     // nombre de test pris pour faire une moyenne
     private final int NB_MEAN=3;
 
-    public Batch(String filePath) {
+    public BatchExecutionTime(String filePath) {
         batchLogger =new BatchLogger(filePath);
     }
 
