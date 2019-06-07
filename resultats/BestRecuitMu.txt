@@ -1,0 +1,8 @@
+fitness et pas de solution du recuit simulé selon Mu
+test pour n=40
+mu	fitness	pas	
+0.5	3292000	5645	
+0.7	3294465	5906	
+0.9	3290235	6127	
+0.99	3296024	5711	
+0.999	3292122	9172	

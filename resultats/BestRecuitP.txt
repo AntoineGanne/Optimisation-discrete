@@ -1,0 +1,3 @@
+fitness et pas de solution du recuit simulé selon P
+test pour n=40
+p	fitness	pas	

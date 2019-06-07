@@ -1,0 +1,8 @@
+fitness et pas de solution du recuit simulé selon P
+test pour n=40
+p	fitness	pas	
+0.0	3285779	8449	
+0.25	3301963	3560	
+0.5	3272659	5140	
+0.75	3299045	5014	
+1.0	3306579	6608	
