@@ -1,0 +1,10 @@
+pas maximum et moyen de découverte de la meilleure solution selon nbSteps
+n	pas moyen	pas maximum	
+12	76	134	
+15	112	157	
+17	372	805	
+20	1534	4356	
+25	6775	12063	
+30	42174	69234	
+35	29488	80454	
+40	46275	54718	

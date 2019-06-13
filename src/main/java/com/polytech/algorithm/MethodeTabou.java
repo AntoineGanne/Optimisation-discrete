@@ -37,10 +37,7 @@ public class MethodeTabou implements GenericAlgorithm<int[],ProblemModel> {
 
         int[][] dist = model.getDist();
         int[][] weight = model.getWeight();
-        int[] initialSolution=new int[model.getN()];
-        for(int i=0;i<initialSolution.length;++i){
-            initialSolution[i]=i+1;
-        }
+        int[] initialSolution=ConfigurationUtil.randomConfiguration(model.getN());
         writeBaseInfosOnLoggers(model.getName());
         return resolve(initialSolution,weight,dist);
     }

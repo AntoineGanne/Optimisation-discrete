@@ -32,7 +32,7 @@ public class BatchExecutionTime {
 
     public void execute (String testName) throws Exception {
         batchLogger.writeLine(testName);
-        batchLogger.writeLine(new String[]{"n \\ méthode+","marche aléatoire","Recuit simulé","Méthode Tabou"});
+        batchLogger.writeLine(new String[]{"n \\ méthode","marche aléatoire","Recuit simulé","Méthode Tabou"});
 
         ArrayList<String> line;
         GenericAlgorithm<int[],ProblemModel>  algorithm;

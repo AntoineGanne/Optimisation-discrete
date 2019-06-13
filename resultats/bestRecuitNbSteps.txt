@@ -1,0 +1,14 @@
+pas maximum et moyen de découverte de la meilleure solution selon nbSteps
+n	pas moyen	pas maximum	
+12	215	299	
+15	552	1142	
+17	287	388	
+20	576	1100	
+25	2405	3260	
+30	3398	7565	
+35	3448	5240	
+40	4424	6152	
+50	9002	12346	
+60	25487	46072	
+80	35171	42578	
+100	76821	102120	

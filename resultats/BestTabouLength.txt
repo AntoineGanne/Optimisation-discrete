@@ -1,0 +1,8 @@
+fitness et pas de solution de la methode Tabou selon tabouLength
+test pour n=30
+TabouLength	fitness	pas	
+0	1893891	15	
+30	1828578	67737	
+100	1841623	72437	
+200	1851422	4384	
+300	1870005	15933	
