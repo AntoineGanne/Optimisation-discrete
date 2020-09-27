@@ -1,1 +1,1 @@
-# Quadratic_assignement_problem
+# Quadratic_assignment_problem
